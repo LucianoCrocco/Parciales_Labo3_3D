@@ -7,6 +7,9 @@ export default function crearCarta(elemento){
     const puertas = document.createElement("h3");
     const kilometros = document.createElement("h3");
     const potencia = document.createElement("h3");
+    const GNC = document.createElement("h3");
+    const danios = document.createElement("h3");
+    const papeles = document.createElement("h3");
     const button = document.createElement("Button");
 
     article.appendChild(titulo);
@@ -23,13 +26,19 @@ export default function crearCarta(elemento){
     article.appendChild(document.createElement("p"));
     article.appendChild(potencia);
     article.appendChild(document.createElement("p"));
+    article.appendChild(GNC);
+    article.appendChild(document.createElement("p"));
+    article.appendChild(danios);
+    article.appendChild(document.createElement("p"));
+    article.appendChild(papeles);
+    article.appendChild(document.createElement("p"));
     article.appendChild(button);
 
     let i = 1;
     Object.keys(elemento).forEach(key => {
         if(key !== "id"){
-            console.log(key)
             article.children[i].textContent = elemento[key];
+            console.log(elemento[key])
             i += 2;
         }
     })
@@ -44,6 +53,9 @@ export default function crearCarta(elemento){
     puertas.textContent = "Puertas";
     kilometros.textContent = "Kilometros";
     potencia.textContent = "Potencia";
+    GNC.textContent = "GNC";
+    danios.textContent = "Daños en al carroceria";
+    papeles.textContent = "Papeles al dia";
     button.textContent = "Mirar Articulo"
 
     

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Primer parcial</title>
     <link rel="stylesheet" href="./css/estilos.css">
+    <link rel="stylesheet" href="./css/responsive.css">
     <script src="./js/app.js" defer type="module"></script>
 </head>
 <body>
@@ -35,34 +36,48 @@
                 <legend>Información del anuncio</legend> 
                     <form action="#" id="form-principal">
                         <label for="titulo">Titulo:</label>
-                        <input type="text" name="titulo" placeholder="Titulo">
+                        <input type="text" name="titulo" placeholder="Titulo" required>
                         
                         <label for="transaccion">Transaccion:</label>
                         <div class="flex-radiobuttons">
                             <label>Venta</label>
-                            <input type="radio" name="transaccion" value="Venta">
+                            <input type="radio" name="transaccion" value="Venta" required>
                             
                             <label>Alquiler</label>   
-                            <input type="radio" name="transaccion" value="Alquiler">
-                            
+                            <input type="radio" name="transaccion" value="Alquiler" required>
                         </div>
                     
                         <label for="descripcion">Descripcion:</label>
-                        <input type="text" placeholder="Descripcion" name="descripcion">
+                        <input type="text" placeholder="Descripcion" name="descripcion" required>
                         
                         <label for="precio">Precio:</label>
-                        <input type="text" placeholder="Precio" name="precio">
+                        <input type="number" placeholder="Precio" name="precio" step="0.01" min="0" required>
     
                         <div class="flex-inputs">
                             <img src="./assets/PUERTAS.png" alt="Cantidad de puertas">
-                            <input type="number" min="3" max="8" placeholder="Puertas" name="puertas">
+                            <input type="number" min="3" max="8" placeholder="Puertas" name="puertas" required>
     
                             <img src="./assets/KILOMETROS.png" alt="Kilometraje">
-                            <input type="text" placeholder="KMs" name="kilometros">
+                            <input type="number" placeholder="KMs" name="kilometros" min="0" required>
     
                             <img src="./assets/MOTOR.jpg" alt="Tipo Motor">
-                            <input type="text" placeholder="Potencia" name="potencia">
+                            <input type="number" placeholder="Potencia" name="potencia" min="0" max="2000" required>
                         </div>
+                        <div id="flex-checkbox">
+                            <label>GNC
+                                <input type="checkbox" name="gnc">
+                            </label>
+
+                            <label>Daños en la carroceria
+                                <input type="checkbox" name="danios">
+                            </label>
+                            
+                            <label>Papeles al dia
+                                <input type="checkbox" name="papeles">
+                            </label>
+
+                        </div>
+                        
                     </form>
                 </fieldset>
                 <article id="botones-container">
@@ -71,7 +86,6 @@
             </section>
 
             <section id="tabla-container"></section>
-
         </main>
 
         <footer id="footer">

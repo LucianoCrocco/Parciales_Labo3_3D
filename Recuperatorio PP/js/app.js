@@ -21,15 +21,18 @@ containerBotones.addEventListener("click", (e) => {
         switch(e.target.textContent){
             case "Guardar":
                 altaLista();
+                funcionesScript.crearAlerta("Guardar");
                 break;
             case "Modificar":
                 modificarLista();
+                funcionesScript.crearAlerta("Modificar");
                 break;
             case "Cancelar":
                 cancelarEdicionAuto();
                 break;
             case "Eliminar":
                 eliminarAuto();
+                funcionesScript.crearAlerta("Eliminar");
                 break;
         }
     } catch(error){
@@ -53,21 +56,27 @@ function actualizarTabla(lista) {
             containerTabla.appendChild(table);
             btnPrincipal.removeAttribute("disabled");
             funcionesScript.eliminarSpinner();
-        }, 500)
+            funcionesScript.eliminarAlerta();
+        }, 2000)
+
     } else {
+
         if(containerTabla.children.length > 0){
             containerTabla.removeChild(containerTabla.children[0]);
             funcionesScript.cargarSpinner();
             setTimeout(() => {
                 funcionesScript.eliminarSpinner();
-            }, 500)
+                funcionesScript.eliminarAlerta();
+            }, 2000)
         }
+
     }
 }
 
 /* Alta Auto en la lista y actualizacion tabla */
 function altaLista() {
-    let nuevoAuto = new Anuncio_Auto(Date.now(), frm.titulo.value, frm.transaccion.value, frm.descripcion.value, frm.precio.value, frm.puertas.value, frm.kilometros.value, frm.potencia.value); 
+    let nuevoAuto = new Anuncio_Auto(Date.now(), frm.titulo.value, frm.transaccion.value, frm.descripcion.value, frm.precio.value, frm.puertas.value, frm.kilometros.value, frm.potencia.value, frm.gnc.checked, frm.danios.checked, frm.papeles.checked);
+
     autosLista.push(nuevoAuto);
 
     actualizarTabla(autosLista);
@@ -78,7 +87,7 @@ function altaLista() {
 
 /* Modificar Auto en la lista y actualizacion tabla */
 function modificarLista(){
-    let autoEditado = new Anuncio_Auto(Date.now(), frm.titulo.value, frm.transaccion.value, frm.descripcion.value, frm.precio.value, frm.puertas.value, frm.kilometros.value, frm.potencia.value); 
+    let autoEditado = new Anuncio_Auto(Date.now(), frm.titulo.value, frm.transaccion.value, frm.descripcion.value, frm.precio.value, frm.puertas.value, frm.kilometros.value, frm.potencia.value, frm.gnc.checked, frm.danios.checked, frm.papeles.checked);
 
     autosLista[id] = autoEditado;
     
@@ -125,6 +134,9 @@ const limpiarCamposFrm = () => {
     frm.puertas.value = "";
     frm.kilometros.value = "";
     frm.potencia.value = "";
+    frm.gnc.checked = false;
+    frm.danios.checked = false;
+    frm.papeles.checked = false;
 }
 
 /* Burbujeo del DOM containerTabla para setear los campos y modificar */
@@ -142,6 +154,9 @@ containerTabla.addEventListener("click", (e) => {
         frm.puertas.value = (e.target.parentElement.children[4].textContent);
         frm.kilometros.value = (e.target.parentElement.children[5].textContent);
         frm.potencia.value = (e.target.parentElement.children[6].textContent);
+        frm.gnc.checked = e.target.parentElement.children[7].textContent === "Sí" ? true : false;
+        frm.danios.checked = e.target.parentElement.children[8].textContent  === "Sí" ? true : false;
+        frm.papeles.checked = e.target.parentElement.children[9].textContent  === "Sí" ? true : false;
 
         if(containerBotones.children.length === 1) {
             funcionesScript.crearBotonEliminar();

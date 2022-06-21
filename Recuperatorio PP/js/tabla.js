@@ -14,7 +14,12 @@ function crearCabecera(elemento){
     Object.keys(elemento).forEach(key => {
         if(key !== "id") {
             const $th = document.createElement("th");
-            $th.textContent = key;
+            if(key == 'danios' || key == 'papeles'){
+                let contenido = key == 'danios' ? "Daños Carroceria" :  'Papeles al dia';
+                $th.textContent = contenido;
+            } else {
+                $th.textContent = key;
+            }
             $tr.appendChild($th);
         }
     })

@@ -50,11 +50,42 @@ function eliminarBotonCancelar(){
     btnCancelar.remove();
 }
 
+
+function crearAlerta(botonNombre){
+    const tableContainer = document.getElementById("tabla-container");
+    const alerta = document.createElement("div");
+    alerta.setAttribute("id", "box-pop-up");
+
+    switch(botonNombre){
+        case "Guardar":
+            alerta.setAttribute("class", "colorAlta");
+            alerta.textContent = "Guardado realizado correctamente";
+            break;
+        case "Modificar":
+            alerta.setAttribute("class", "colorModificar");
+            alerta.textContent = "Modificacion realizada correctamente";
+            break;
+        case "Eliminar":
+            alerta.setAttribute("class", "colorEliminar");
+            alerta.textContent = "Eliminacion realizada correctamente";
+            break;
+    }
+
+    tableContainer.insertAdjacentElement("afterend", alerta);
+}
+
+function eliminarAlerta(){
+    const alerta = document.getElementById("box-pop-up");
+    alerta.remove();
+}
+
 export const funcionesScript = {
     cargarSpinner, 
     eliminarSpinner,
     crearBotonCancelar,
     crearBotonEliminar,
     eliminarBotonEliminar,
-    eliminarBotonCancelar
+    eliminarBotonCancelar,
+    crearAlerta,
+    eliminarAlerta
 };

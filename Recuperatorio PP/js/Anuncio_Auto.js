@@ -1,11 +1,14 @@
 import Anuncio from "./Anuncio.js";
 export default class Anuncio_Auto extends Anuncio {
-    constructor(id, titulo, transaccion, descripcion, precio, puertas, kilometros, potencia){
+    constructor(id, titulo, transaccion, descripcion, precio, puertas, kilometros, potencia, gnc, danios, papeles){
         try {
             super(id, titulo, transaccion, descripcion, precio);
             this.Puertas = puertas;
             this.Kilometros = kilometros;
             this.Potencia = potencia;
+            this.GNC = gnc;
+            this.Danios = danios;
+            this.Papeles = papeles;
         } catch(error) {
             throw error;
         }
@@ -29,6 +32,27 @@ export default class Anuncio_Auto extends Anuncio {
             this.potencia = potencia;
         } else {
             throw new Error("Potencia invalida");
+        }
+    }
+    set GNC(gnc){
+        if(gnc){
+            this.gnc = "Sí";
+        } else {
+            this.gnc = "No";
+        }
+    }
+    set Danios(danios){
+        if(danios){
+            this.danios = "Sí";
+        }else {
+            this.danios = "No";
+        }
+    }
+    set Papeles(papeles){
+        if(papeles){
+            this.papeles = "Sí";
+        }else {
+            this.papeles = "No";
         }
     }
 }
